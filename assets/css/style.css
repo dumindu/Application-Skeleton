@@ -47,7 +47,7 @@ html, button, input, select, textarea {
 
 body { 
   margin: 0; 
-  background: #F0F0F0;
+  background: #ededed;
   width:100%;
   height: 100%;
 }
@@ -71,8 +71,8 @@ body {
    Links
    ========================================================================== */
 
-a { color: #00e; }
-a:visited { color: #551a8b; }
+a { color: #06e; text-decoration: none;}
+a:visited { color: #06e; }
 a:hover { color: #06e; }
 a:focus { outline: thin dotted; }
 
@@ -349,7 +349,7 @@ td { vertical-align: top; }
 /* =============================================================================
    Grid
    ========================================================================== */
-.row{
+.container{
   display: block;
   padding: 0px 12px;
   /* remove intra-unit whitespace for all font families */
@@ -358,14 +358,14 @@ td { vertical-align: top; }
   /* protect against WebKit bug with optimizelegibility */
   text-rendering: optimizespeed;
 }
-  .row:before, .row:after {  
+  .container:before, .container:after {  
     display: table;  
     content: "";
   }
-  .row:after {  
+  .container:after {  
     clear: both;
   }
-  .row + .row{
+  .container + .container{
     padding: 0px;
   }
   
@@ -393,12 +393,12 @@ td { vertical-align: top; }
   word-spacing: normal;
   text-rendering: auto;
 }*/
-  .row > .grid__unit:FIRST-CHILD{
+  .container > .grid__unit:FIRST-CHILD{
     margin-left: 0px;
   }
   
-.unit-full {
-  display: block;
+.grid > [class*="unit-full"] {
+	display: block;
 }
 
 /* 2 column grid */
@@ -511,9 +511,41 @@ td { vertical-align: top; }
   width: 91.667%;
 }
 
+/* ifig
+   ========================================================================== */
+figure:before, figure:after {
+  content: "";
+  display: table;
+}
+figure:after {
+  clear: both;
+}
+
+figure{
+  margin: 0 0 24px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #EBEBEB;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+}
+
+figure img{
+  display: block;
+  max-width: 100%;
+  float: left;
+  height: auto;
+  padding: 6px;
+}
+
+figure figcaption {
+  padding: 1em;
+  color: #808080;
+}
+figure figcaption p, figure figcaption ul, figure figcaption ol, figure figcaption dl, figure figcaption blockquote {
+  margin: 0 0 0.7em;
+}
 
 /* =============================================================================
-   Grid
+   nano styles
    ========================================================================== */
 .nano {
   position : relative;
@@ -565,76 +597,261 @@ td { vertical-align: top; }
 }
 
 /* =============================================================================
-   Media Objects
+   touchTouch styles
    ========================================================================== */
-/* iblock [structural component] - stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+/* The gallery overlay */
+
+#galleryOverlay{
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	opacity:0;
+	z-index:100000;
+	background-color:#222;
+	background-color:rgba(0,0,0,0.8);
+	overflow:hidden;
+	display:none;
+	
+	-moz-transition:opacity 1s ease;
+	-webkit-transition:opacity 1s ease;
+	transition:opacity 1s ease;
+}
+
+/* This class will trigger the animation */
+
+#galleryOverlay.visible{
+	opacity:1;
+}
+
+#gallerySlider{
+	height:100%;
+	
+	left:0;
+	top:0;
+	
+	width:100%;
+	white-space: nowrap;
+	position:absolute;
+	
+	-moz-transition:left 0.4s ease;
+	-webkit-transition:left 0.4s ease;
+	transition:left 0.4s ease;
+}
+
+#gallerySlider .placeholder{
+	background: url("../js/plugins/touchTouch/preloader.gif") no-repeat center center;
+	height: 100%;
+	line-height: 1px;
+	text-align: center;
+	width:100%;
+	display:inline-block;
+}
+
+/* The before element moves the
+ * image halfway from the top */
+
+#gallerySlider .placeholder:before{
+	content: "";
+	display: inline-block;
+	height: 50%;
+	width: 1px;
+	margin-right:-1px;
+}
+
+#gallerySlider .placeholder img{
+	display: inline-block;
+	max-height: 100%;
+	max-width: 100%;
+	vertical-align: middle;
+}
+
+#gallerySlider.rightSpring{
+	-moz-animation: rightSpring 0.3s;
+	-webkit-animation: rightSpring 0.3s;
+}
+
+#gallerySlider.leftSpring{
+	-moz-animation: leftSpring 0.3s;
+	-webkit-animation: leftSpring 0.3s;
+}
+
+/* Firefox Keyframe Animations */
+
+@-moz-keyframes rightSpring{
+	0%{		margin-left:0px;}
+	50%{	margin-left:-30px;}
+	100%{	margin-left:0px;}
+}
+
+@-moz-keyframes leftSpring{
+	0%{		margin-left:0px;}
+	50%{	margin-left:30px;}
+	100%{	margin-left:0px;}
+}
+
+/* Safari and Chrome Keyframe Animations */
+
+@-webkit-keyframes rightSpring{
+	0%{		margin-left:0px;}
+	50%{	margin-left:-30px;}
+	100%{	margin-left:0px;}
+}
+
+@-webkit-keyframes leftSpring{
+	0%{		margin-left:0px;}
+	50%{	margin-left:30px;}
+	100%{	margin-left:0px;}
+}
+
+/* Arrows */
+
+#prevArrow,#nextArrow{
+	border:none;
+	text-decoration:none;
+	background:url('../js/plugins/touchTouch/arrows.png') no-repeat;
+	opacity:0.5;
+	cursor:pointer;
+	position:absolute;
+	width:43px;
+	height:58px;
+	
+	top:50%;
+	margin-top:-29px;
+	
+	-moz-transition:opacity 0.2s ease;
+	-webkit-transition:opacity 0.2s ease;
+	transition:opacity 0.2s ease;
+}
+
+#prevArrow:hover, #nextArrow:hover{
+	opacity:1;
+}
+
+#prevArrow{
+	background-position:left top;
+	left:40px;
+}
+
+#nextArrow{
+	background-position:right top;
+	right:40px;
+}
+/* =============================================================================
+   prettify
    ========================================================================== */
-.iblock:before, .iblock:after {
-  content: "";
-  display: table;
+.com { color: #93a1a1; }
+.lit { color: #195f91; }
+.pun, .opn, .clo { color: #93a1a1; }
+.fun { color: #dc322f; }
+.str, .atv { color: #D14; }
+.kwd, .linenums .tag { color: #1e347b; }
+.typ, .atn, .dec, .var { color: teal; }
+.pln { color: #48484c; }
+.prettyprint {
+  padding: 8px;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  border-radius: 3px;
 }
-.iblock:after {
-  clear: both;
-}
-
-/*
- * Primary graphical component (e.g. img, svg, sprite)
- */
-.iblock-img,
-.iblock-imgsmall,
-.iblock-imglarge {
-  float: left;
-  margin: 0 10px 0 0;
-}
-
-.iblock-imgsmall {
-  margin-right: 5px;
+.prettyprint.linenums {
+  -webkit-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+  -moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
+  box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
 }
 
-.iblock-imglarge {
-  margin-right: 15px;
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  //margin: 0 0 0 33px; /* IE indents via margin-left */
+} 
+ol.linenums li {
+  padding-left: 12px;
+  color: #bebec5;
+  line-height: 18px;
+  text-shadow: 0 1px 0 #fff;
 }
-
-/*
- * Optional graphical component
- */
-.iblock-opt {
-  float: right;
-  margin: 0 0 0 10px;
+pre {
+	font-size: 12.025px;
+  line-height: 18px;
+  //max-width: 100;
+  overflow-x: auto;
 }
-
-/*
- * 1. Remove excess space below images in .img block
- * 2. Guard against `img {max-width:100%}` hiding all Media Object images in IE8
- */
-.iblock-img img,
-.iblock-opt img {
-  display: block;
-  max-width: none;
+code{
+	background-color: #FEE9CC;
+  color: rgba(0, 0, 0, 0.75);
+  padding: 1px 3px;
 }
-
-/*
- * Media object body
- * 1. Create a new block formatting context (NBFC) in modern browsers
- * 2. Avoid shrink-wrap behaviour of table-cell
- *
- * N.B. This breaks down in some browsers when images within .body exceed its
- * width. The alternative is to use `overflow:hidden` to create the NBFC but
- * this is problematic if the object contains elements absolutely positioned
- * beyond the confines of its box.
- */
-.iblock-body {
-  display: table-cell;
-  width: 10000px;
+pre, code {
+	color: #333333;
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+  font-size: 12px;
 }
-
-.iblock-body h2{
-  margin-top: 0px;
-}
-
 /* =============================================================================
    page layout
    ========================================================================== */
+#top_bar{
+  width: 100%;
+  min-width: 200px;
+  height: 36px;
+  position: fixed;
+  top: 0px;
+  background: #ffffff; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ3JSIgc3RvcC1jb2xvcj0iI2Y2ZjZmNiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZGVkZWQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-8 */
+
+}
+	#top_bar ul{
+    list-style: none;
+    margin: 0px;
+    padding-left: 0px;
+  }
+    #top_bar ul li{
+      display: inline-block;
+      padding-top: 3px;
+      margin-left: 12px;
+      vertical-align: middle;
+    }
+    #top_bar ul li:first-child{
+      margin-left: 0px;
+    }
+    #top_bar a{
+    	color: #333;
+    	font-weight: bold;
+    	cursor: pointer;
+    }
+  #top_bar img, #top_bar svg{
+  	display:inline;
+  	width:30px;
+  	height: 30px;
+  }
+  #title_cell{
+		width: 50%;
+	}
+	#main_menu_cell{
+		width: 50%;
+		text-align: right;
+	}
+	#date_cell,#menu_launcher{
+		display: none;
+	}
+	
+	
+	/*#title_cell{
+		width: 66.667%;
+	}#main_menu_cell{
+		width: 33.333%;
+	}*/
+
+	
+/*
 #main_wrapper{
   width:inherit;
   height: 100%;
@@ -645,23 +862,6 @@ td { vertical-align: top; }
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   overflow-y: auto;
-}
-
-#top_bar{
-  background: #f9f9f9; /* Old browsers */
-  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
-  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ3JSIgc3RvcC1jb2xvcj0iI2Y2ZjZmNiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZGVkZWQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-  background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* IE10+ */
-  background: linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-8 */
-  width: 100%;
-  height: 36px;
-  position: fixed;
-  top: 0px;
 }
 #main_wrapper>.grid{
   height: 100%;
@@ -674,39 +874,208 @@ td { vertical-align: top; }
 #side_bar{
   height: 100%;
 }
-  #top_bar ul{
+*/
+#main_wrapper{
+	height: 100%;
+	width: 100%;
+	background: #FFFFFF;
+  border-top: 1px solid #E0E0E0;
+  border-left: 1px solid #D6D6D6;
+  border-right: 1px solid #D6D6D6;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  overflow-y: auto;
+}
+#aside_container{
+	float: right;
+	width: 330px;
+	height: inherit;
+	padding: 12px;
+	display: none;
+}
+#main_container{
+	height: 100%;
+	width: inherit;
+}
+
+article{
+	margin-top: 24px;
+}
+.article_header_info h1{
+	margin: 0 0 0.75em;
+}
+
+.side_unit{
+	margin-bottom: 24px;
+}
+#main_menu ul{
     list-style: none;
     margin: 0px;
     padding-left: 0px;
   }
-    #top_bar ul li{
+    #main_menu ul li{
       display: inline-block;
-      padding-top: 6px;
-      padding-bottom: 6px;
+      padding-top: 3px;
+      margin-left: 12px;
+      vertical-align: middle;
     }
- 
-
-
-
-
-
-
-
-
-
-
-
-
+    #main_menu ul li:first-child{
+      margin-left: 0px;
+    }
+  #main_menu img, #main_menu svg{
+  	display:inline;
+  	width:30px;
+  	height: 30px;
+  }
 /* ==|== media queries ======================================================
    EXAMPLE Media Query for Responsive Design.
    This example overrides the primary ('mobile first') styles
    Modify as content requires.
    ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
+@media only screen and (max-width: 480px) {
+	.unit-1-2, .unit-1-3, .unit-2-3{
+		width: 100%;
+	}
+	
+	html{
+	padding-top: 30px;
+}
+#top_bar{
+	height: 30px;
+}
+	#top_bar img, #top_bar svg{
+		width:24px;
+	  	height: 24px;
+	}
+	#main_menu_cell{
+		display: none;
+	}
+	#menu_launcher{
+		display: inline-block;
+		width: 16.667%;
+		text-align: right;
+	}
+	#title_cell{
+		width: 83.333%;
+	}
+	#aside_container{
+		
+	}
+}
+@media only screen and (min-width: 720px) and (max-width : 1224px){
+	#title_cell{
+		width: 66.667%;
+	}#main_menu_cell{
+		width: 33.333%;
+	}
+}
+@media only screen and (min-width : 1224px) {
+html{
+	padding-top: 42px;
+}
+#top_bar{
+	height: 42px;
+}
+	#top_bar ul li{
+		padding-top: 5px;
+	}
+	#top_bar img, #top_bar svg{
+		width:32px;
+	  	height: 32px;
+	}
+	#title_cell,#main_menu_cell{
+		width: 41.667%;
+	}
+	#date_cell{
+		width: 16.667%;
+		display: inline-block;
+		line-height: 2em;
+	}
+	#aside_container{
+		display: block;
+	}
+	#main_container{
+		padding-right: 330px;
+	}
+}
+@media only screen and (min-width : 1824px) {
+html{
+	padding-top: 54px;
+}
+#top_bar{
+	height: 54px;
+}
+	#top_bar ul li{
+		padding-top: 9px;
+	}
+	#top_bar img, #top_bar svg{
+		width:36px;
+	  	height: 36px;
+	}
 }
 
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+/* Styles */
+	
+
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+}
 
 
 /* ==|== non-semantic helper classes ========================================
