@@ -20,7 +20,7 @@
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="<?php echo System.getenv("OPENSHIFT_APP_DIR");?>style.css">
   <!--[if gte IE 9]>
 	  <style type="text/css">
 	    .gradient {
