@@ -20,7 +20,7 @@
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="style.css">
   <!--[if gte IE 9]>
 	  <style type="text/css">
 	    .gradient {
