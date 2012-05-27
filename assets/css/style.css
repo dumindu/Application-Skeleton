@@ -42,7 +42,7 @@ html {
 
 html, button, input, select, textarea { 
   font-family: Helvetica, Arial, sans-serif; 
-  color: #484848;
+  color: #555555;
 }
 
 body { 
@@ -63,18 +63,21 @@ body {
  * Also: hot pink! (or customize the background color to match your design)
  */
 
-::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
-::selection { background: #fe57a1; color: #fff; text-shadow: none; }
+::-moz-selection { background: #3E97E8; color: #fff; text-shadow: none; }
+::selection { background: #3E97E8; color: #fff; text-shadow: none; }
 
 
 /* =============================================================================
    Links
    ========================================================================== */
 
-a { color: #06e; text-decoration: none;}
+a { color: #0088CC; text-decoration: none;}
 a:visited { color: #06e; }
 a:hover { color: #06e; }
 a:focus { outline: thin dotted; }
+a svg:hover{
+	fill: #0088CC;
+}
 
 /* Improve readability when focused and hovered in all browsers: h5bp.com/h */
 a:hover, a:active { outline: 0; }
@@ -91,7 +94,7 @@ h5, .h5,
 h6, .h6 {
   line-height: 1.1;
   font-weight: bold;
-  color: #222222;
+  color: #333333;
 }
 
 h1, .h1 {
@@ -525,7 +528,7 @@ figure{
   margin: 0 0 24px;
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid #EBEBEB;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
 }
 
 figure img{
@@ -774,16 +777,17 @@ ol.linenums li {
 pre {
 	font-size: 12.025px;
   line-height: 18px;
-  //max-width: 100;
+  max-width: 100;
   overflow-x: auto;
+  color: #BBBAAA;
 }
 code{
-	background-color: #FEE9CC;
+	background: #474747;
   color: rgba(0, 0, 0, 0.75);
   padding: 1px 3px;
+  color: #E0E0E0;
 }
 pre, code {
-	color: #333333;
   font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
   font-size: 12px;
 }
@@ -792,21 +796,21 @@ pre, code {
    ========================================================================== */
 #top_bar{
   width: 100%;
-  min-width: 200px;
+  min-width: 320px;
   height: 36px;
   position: fixed;
   top: 0px;
   background: #ffffff; /* Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ3JSIgc3RvcC1jb2xvcj0iI2Y2ZjZmNiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZGVkZWQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-	background: -moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* IE10+ */
-	background: linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=0 ); /* IE6-8 */
-
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-8 */
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
 }
 	#top_bar ul{
     list-style: none;
@@ -823,7 +827,8 @@ pre, code {
       margin-left: 0px;
     }
     #top_bar a{
-    	color: #333;
+    	color: #333333;
+    	text-shadow: 0 1px 0 #F0F0F0;
     	font-weight: bold;
     	cursor: pointer;
     }
@@ -882,8 +887,8 @@ pre, code {
   border-top: 1px solid #E0E0E0;
   border-left: 1px solid #D6D6D6;
   border-right: 1px solid #D6D6D6;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
   overflow-y: auto;
 }
 #aside_container{
@@ -892,6 +897,7 @@ pre, code {
 	height: inherit;
 	padding: 12px;
 	display: none;
+	color: #808080;
 }
 #main_container{
 	height: 100%;
@@ -901,6 +907,9 @@ pre, code {
 article{
 	margin-top: 24px;
 }
+	article h1 a, article h1 a:hover, article h1 a:active, article h1 a:visited{
+		color: #333333;
+	}
 .article_header_info h1{
 	margin: 0 0 0.75em;
 }
@@ -908,25 +917,59 @@ article{
 .side_unit{
 	margin-bottom: 24px;
 }
-#main_menu ul{
-    list-style: none;
+	.side_unit ul{
+		list-style: none;
     margin: 0px;
     padding-left: 0px;
-  }
-    #main_menu ul li{
-      display: inline-block;
-      padding-top: 3px;
-      margin-left: 12px;
-      vertical-align: middle;
-    }
-    #main_menu ul li:first-child{
-      margin-left: 0px;
-    }
+	}
+	.side_unit ul li a{
+		color: #808080;
+	}
+#main_nav a{
+	display:block;
+	padding-bottom: 6px;
+}
+#main_nav a:hover{
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+}
+#main_menu ul li{
+  display: inline-block;
+  padding-top: 3px;
+  margin-left: 12px;
+  vertical-align: middle;
+}
+	#main_menu ul li:first-child{
+	  margin-left: 0px;
+	}
   #main_menu img, #main_menu svg{
   	display:inline;
   	width:30px;
   	height: 30px;
   }
+  
+.side_unit .title_bar{
+	text-align: right;
+	padding: 6px 0px 12px;
+}  
+.side_unit .title_bar .title_img{
+	float: right;
+  width: 24px;
+  height: 24px;
+  margin:0 1em 0 0.3em;
+}
+.side_unit .title_bar .title_img svg{
+	width: 24px;
+  height: 24px;
+  fill: #5C5C5C;
+}
+.side_unit .title_bar .title {
+  display: table-cell;
+  width: 10000px;
+}
+.side_unit .title_bar .title h4{
+	margin: 0;
+	color: #5C5C5C;
+}
 /* ==|== media queries ======================================================
    EXAMPLE Media Query for Responsive Design.
    This example overrides the primary ('mobile first') styles
@@ -1010,7 +1053,7 @@ html{
 	}
 	#top_bar img, #top_bar svg{
 		width:36px;
-	  	height: 36px;
+	  height: 36px;
 	}
 }
 
